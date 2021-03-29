@@ -8,8 +8,8 @@ export default function CreatePost() {
     userId: 1
   });
 
-  const click = async (e) => {
-    e.preventDefault();
+  const click = async (event) => {
+    event.preventDefault();
     await createPost(form);
   };
 
@@ -23,12 +23,17 @@ export default function CreatePost() {
 
   return (
     <form onSubmit={click}>
-      <label>Enter title: </label>
-      <input type="text" onChange={(e) => updateForm(e, 'title')} />
-      &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-      <label>Enter body: </label>
-      <input type="text" onChange={(e) => updateForm(e, 'body')} />
-      <button type="submit">Submit</button>
+      <div className="form-group">
+        <label htmlFor="title">Title</label>
+        <input id="title" type="text" className="form-control" placeholder="Enter Title" onChange={(e) => updateForm(e, 'title')} />
+      </div>
+      <div className="form-group">
+        <label htmlFor="body">Body</label>
+        <input type="text" className="form-control" id="body" placeholder="Enter Body" onChange={(e) => updateForm(e, 'body')} />
+      </div>
+      <button type="submit" className="btn btn-primary">
+        Submit
+      </button>
     </form>
   );
 }

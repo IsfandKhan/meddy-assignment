@@ -5,7 +5,7 @@ export default function Posts({ posts }) {
     <>
         {posts.map((post) => (
           <Post key={post.id} post={post} />
-        ))}>
+        ))}
     </>
   );
 }
