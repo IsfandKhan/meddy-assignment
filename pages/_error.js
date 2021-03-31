@@ -12,6 +12,13 @@ Error.getInitialProps = ({ res, err }) => {
     res.end();
   }
 
+  if (statusCode == 404) {
+    res.writeHead(302, {
+      Location: '/404'
+    });
+    res.end();
+  }
+
   return { statusCode };
 };
 
