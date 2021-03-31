@@ -1,17 +1,15 @@
-import { getAllPosts } from './api/post';
-import Posts from './components/posts';
+import Posts from '../components/posts';
+import { fetchPosts, wrapper } from '../components/store';
 
-export async function getStaticProps() {
-  const data = await getAllPosts();
-  if (!data) {
-    return {
-      notFound: true
-    };
-  }
-
-  return { props: { data } };
-}
+export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
+  await store.dispatch(fetchPosts());
+  return {
+    props: {
+      posts: store.getState().posts
+    }
+  };
+});
 
 export default function StaticIndex(props) {
-  return <Posts posts={props.data} />;
+  return <Posts posts={props.posts} />;
 }

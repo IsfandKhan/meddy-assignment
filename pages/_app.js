@@ -1,18 +1,19 @@
 import Head from 'next/head';
-import NavBar from './components/navbar';
+import NavBar from '../components/navbar';
 import Router from 'next/router';
-import NProgress from 'nprogress';
-
 import '../styles/globals.css';
-import 'nprogress/nprogress.css';
+import {wrapper} from '../components/store';
 
-//Binding events.
-Router.onRouteChangeStart = (url) => NProgress.start();
+/* Sentry.init({
+  dsn: "https://1a2c1c8e690941849945d161b07f0c92@o562000.ingest.sentry.io/5700126",
+  integrations: [new Integrations.BrowserTracing()],
 
-Router.onRouteChangeComplete = () => NProgress.done();
-
-Router.onRouteChangeError = () => NProgress.done();
-
+  // Set tracesSampleRate to 1.0 to capture 100%
+  // of transactions for performance monitoring.
+  // We recommend adjusting this value in production
+  tracesSampleRate: 1.0,
+});
+ */
 function MyApp({ Component, pageProps }) {
   return (
     <>
@@ -26,6 +27,7 @@ function MyApp({ Component, pageProps }) {
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
           crossOrigin="anonymous"
         />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
         <script
           src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
           integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -46,6 +48,12 @@ function MyApp({ Component, pageProps }) {
           crossOrigin="anonymous"
           defer
         ></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js">
+          {(Router.onRouteChangeStart = () => NProgress.start())}
+          {(Router.onRouteChangeComplete = () => NProgress.done())}
+          {(Router.onRouteChangeError = () => NProgress.done())}
+        </script>
       </Head>
       <NavBar />
       <Component {...pageProps} />
@@ -53,4 +61,4 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-export default MyApp;
+export default wrapper.withRedux(MyApp);

@@ -1,19 +1,15 @@
-import Head from 'next/head';
-import { getAllPosts } from './api/post';
-import Posts from './components/posts';
+import Posts from '../components/posts';
+import { fetchPosts, wrapper } from '../components/store';
 
-export async function getServerSideProps() {
-  const data = await getAllPosts();
-
-  if (!data) {
-    return {
-      notFound: true
-    };
-  }
-
-  return { props: { data } };
-}
+export const getServerSideProps = wrapper.getServerSideProps(async ({ store }) => {
+  await store.dispatch(fetchPosts());
+  return {
+    props: {
+      posts: store.getState().posts
+    }
+  };
+});
 
 export default function ServerIndex(props) {
-  return <Posts posts={props.data} />;
+  return <Posts posts={props.posts} />;
 }
