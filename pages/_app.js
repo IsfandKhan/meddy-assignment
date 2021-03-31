@@ -2,7 +2,7 @@ import Head from 'next/head';
 import NavBar from '../components/navbar';
 import Router from 'next/router';
 import '../styles/globals.css';
-import {wrapper} from '../components/store';
+import {wrapper} from '../store/store';
 
 /* Sentry.init({
   dsn: "https://1a2c1c8e690941849945d161b07f0c92@o562000.ingest.sentry.io/5700126",

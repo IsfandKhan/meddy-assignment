@@ -1,5 +1,5 @@
 import Posts from '../components/posts';
-import { fetchPosts, wrapper } from '../components/store';
+import { fetchPosts, wrapper } from '../store/store';
 
 export const getServerSideProps = wrapper.getServerSideProps(async ({ store }) => {
   await store.dispatch(fetchPosts());
