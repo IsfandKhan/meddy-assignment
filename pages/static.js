@@ -1,5 +1,5 @@
-import Posts from '../components/posts';
-import { fetchPosts, wrapper } from '../store/store';
+import { Posts } from '../components';
+import { fetchPosts, wrapper } from '../store';
 
 export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
   await store.dispatch(fetchPosts());
@@ -10,6 +10,6 @@ export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
   };
 });
 
-export default function StaticIndex(props) {
-  return <Posts posts={props.posts} />;
-}
+const StaticIndex = (props) => <Posts posts={props.posts} />;
+
+export default StaticIndex;

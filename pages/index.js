@@ -1,5 +1,5 @@
-import Posts from '../components/posts';
-import { fetchPosts, wrapper } from '../store/store';
+import { Posts } from '../components';
+import { fetchPosts, wrapper } from '../store';
 
 export const getServerSideProps = wrapper.getServerSideProps(async ({ store }) => {
   await store.dispatch(fetchPosts());
@@ -10,6 +10,6 @@ export const getServerSideProps = wrapper.getServerSideProps(async ({ store }) =
   };
 });
 
-export default function ServerIndex(props) {
-  return <Posts posts={props.posts} />;
-}
+const ServerIndex = (props) => <Posts posts={props.posts} />;
+
+export default ServerIndex;

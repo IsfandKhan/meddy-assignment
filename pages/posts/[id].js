@@ -1,26 +1,20 @@
-import Heading from '../../components/heading';
-import Post from '../../components/post';
-import { getPostById } from '../api/post';
+import { Post, Heading } from '../../components';
+import { wrapper, fetchPost } from '../../store';
 
-export async function getServerSideProps(context) {
-  const data = await getPostById(context.params.id);
-  console.log(data);
+export const getServerSideProps = wrapper.getServerSideProps(async ({ store, params }) => {
+  await store.dispatch(fetchPost(params.id));
+  return {
+    props: {
+      post: store.getState().post
+    }
+  };
+});
 
-  if (!data) {
-    return {
-      notFound: true
-    };
-  }
+const PostView = (props) => (
+  <>
+    <Heading title="Post" />
+    <Post post={props.post} clickable={false} />
+  </>
+);
 
-  return { props: { data } };
-}
-
-export default function PostView(props) {
-  const { data: post } = props;
-  return (
-    <>
-      <Heading title="Post" />
-      <Post post={post} clickable={false} />
-    </>
-  );
-}
+export default PostView;

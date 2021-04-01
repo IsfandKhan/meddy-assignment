@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { createPost } from './api/post';
 
-export default function CreatePost() {
+const CreatePost = () => {
   const [form, setForm] = useState({
     title: '',
     body: '',
@@ -49,3 +49,5 @@ export default function CreatePost() {
     </form>
   );
 }
+
+export default CreatePost;
