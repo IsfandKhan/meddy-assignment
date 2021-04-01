@@ -1,20 +1,24 @@
 import Head from 'next/head';
 import Router from 'next/router';
+import * as Sentry from "@sentry/browser";
+import { Integrations } from "@sentry/tracing";
 
 import { NavBar } from '../components';
 import { wrapper } from '../store/store';
 
 import '../styles/globals.css';
-/* Sentry.init({
-  dsn: "https://1a2c1c8e690941849945d161b07f0c92@o562000.ingest.sentry.io/5700126",
+
+Sentry.init({
+  dsn: process.env.SENTRY_DSN,
   integrations: [new Integrations.BrowserTracing()],
 
   // Set tracesSampleRate to 1.0 to capture 100%
   // of transactions for performance monitoring.
   // We recommend adjusting this value in production
-  tracesSampleRate: 1.0,
+  tracesSampleRate:  process.env.SENTRY_TRACES_SAMPLE_RATE,
 });
- */
+console.log(process.env.SENTRY_DSN);
+
 const MyApp = ({ Component, pageProps }) => (
   <>
     <Head>

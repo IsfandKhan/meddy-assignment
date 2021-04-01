@@ -8,8 +8,8 @@
     "start": "node node_modules/next/dist/bin/next start"
   },
   "dependencies": {
-    "@sentry/react": "^6.2.4",
-    "@sentry/tracing": "^6.2.4",
+    "@sentry/browser": "^6.2.5",
+    "@sentry/tracing": "^6.2.5",
     "memory-cache": "^0.2.0",
     "next": "10.0.9",
     "next-redux-wrapper": "^6.0.2",

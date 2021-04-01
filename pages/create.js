@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 import { request } from '../backend-services';
 
 const CreatePost = () => {
+  const router = useRouter();
   const [form, setForm] = useState({
     title: '',
     body: '',
@@ -13,8 +15,14 @@ const CreatePost = () => {
     try {
       await request.post('/posts', form);
       alert('Post Successful');
+      router.push('/');
     } catch (error) {
       alert('Something Occurred');
+      setForm({
+        title: '',
+        body: '',
+        userId: 1
+      });
     }
   };
 
