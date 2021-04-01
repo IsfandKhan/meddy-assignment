@@ -1,9 +1,10 @@
+import Heading from '../../components/heading';
 import Post from '../../components/post';
 import { getPostById } from '../api/post';
 
 export async function getServerSideProps(context) {
   const data = await getPostById(context.params.id);
-  console.log(data)
+  console.log(data);
 
   if (!data) {
     return {
@@ -16,5 +17,10 @@ export async function getServerSideProps(context) {
 
 export default function PostView(props) {
   const { data: post } = props;
-  return <Post post={post} />;
+  return (
+    <>
+      <Heading title="Post" />
+      <Post post={post} clickable={false} />
+    </>
+  );
 }
