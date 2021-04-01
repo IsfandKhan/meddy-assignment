@@ -1,4 +1,11 @@
-export const getInitialProps = ({ res, err }) => {
+import Custom404 from './404';
+import Custom500 from './500';
+
+export const getInitialProps = (context) => {
+  console.log(context, 'context');
+
+  const { res, err } = context;
+
   const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
 
   if (statusCode >= 500 && statusCode < 600) {
@@ -18,6 +25,14 @@ export const getInitialProps = ({ res, err }) => {
   return { statusCode };
 };
 
-const Error = () => <h1 className="text-uppercase" style={{ margin: '50%' }}>An error occurred</h1>;
+const Error = (props) => {
+  const { statusCode } = props;
+  if (statusCode === 404) {
+    return <Custom404 />;
+  } else if (statusCode === 500) {
+    return <Custom500 />;
+  }
+  return <h1 className="text-uppercase text-center">An error occurred</h1>;
+};
 
 export default Error;

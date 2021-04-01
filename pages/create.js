@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { createPost } from './api/post';
+import { request } from '../backend-services';
 
 const CreatePost = () => {
   const [form, setForm] = useState({
@@ -10,7 +10,12 @@ const CreatePost = () => {
 
   const click = async (event) => {
     event.preventDefault();
-    await createPost(form);
+    try {
+      await request.post('/posts', form);
+      alert('Post Successful');
+    } catch (error) {
+      alert('Something Occurred');
+    }
   };
 
   const updateForm = (event, field) => {
@@ -48,6 +53,6 @@ const CreatePost = () => {
       </button>
     </form>
   );
-}
+};
 
 export default CreatePost;
