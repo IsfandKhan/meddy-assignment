@@ -3,7 +3,7 @@ import { createWrapper, HYDRATE } from 'next-redux-wrapper';
 import thunk from 'redux-thunk';
 import * as actions from './action';
 
-const debug = process.env.NEXT_PUBLIC_REDUX_DEBUG;
+const debug = Boolean(process.env.NEXT_PUBLIC_REDUX_DEBUG);
 
 const reducer = (state = { posts: [], post: {} }, action) => {
   switch (action.type) {
