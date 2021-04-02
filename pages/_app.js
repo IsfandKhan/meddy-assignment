@@ -9,7 +9,7 @@ import { wrapper } from '../store/store';
 import '../styles/globals.css';
 
 Sentry.init({
-  dsn: process.env.SENTRY_DSN,
+  dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
   integrations: [new Integrations.BrowserTracing()],
 
   // Set tracesSampleRate to 1.0 to capture 100%
@@ -17,7 +17,7 @@ Sentry.init({
   // We recommend adjusting this value in production
   tracesSampleRate:  process.env.SENTRY_TRACES_SAMPLE_RATE,
 });
-console.log(process.env.SENTRY_DSN);
+console.log(process.env.NEXT_PUBLIC_SENTRY_DSN);
 
 const MyApp = ({ Component, pageProps }) => (
   <>
