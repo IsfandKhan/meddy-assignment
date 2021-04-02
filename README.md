@@ -4,19 +4,54 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 First, run the development server:
 
+## First Run
+```bash
+npm i && npm run dev
+# or
+yarn && yarn dev
+```
+
+## Subsequent Runs
 ```bash
 npm run dev
 # or
 yarn dev
 ```
 
+## About Application
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This will open a server side rendered page. Multiple posts can be seen on the page, clicking on any of the post card will take us to the single post page
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Open [http://localhost:3000/static](http://localhost:3000/static) with your browser to see the result.
+This will open a statically rendered page. Multiple posts can be seen on the page, clicking on any of the post card will take us to the single post page
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Open [http://localhost:3000/create](http://localhost:3000/create) with your browser to see the result.
+This will open a server side rendered create post page.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Open [http://localhost:3000/posts/[id]](http://localhost:3000/posts/1) with your browser to see the result.
+This will open a server sid rendered create post page.
+
+## Error Logging
+Custom Error pages with Sentry integration in the application is used.
+
+## State Managment
+Redux amd Redux-Thunk are used for state mangement and asynchronous API fetching.
+
+## Production
+The live version of the application can be reached at [https://meddy-assignment.vercel.app](https://meddy-assignment.vercel.app)
+The redeployment process can be initiated by submitting a new commit in the main branch.
+
+## Git Repository
+The 'main' branch is the base branch and most up to date in the project with the latest code.
+
+## API Caching
+24 hour based in memory API caching mechanism used in the application.
+
+## Testing Suite
+The application can be tested by executing:
+
+ - npm run cypress:open for testing with UI.
+ - npm run cypress:run for testing with headless browser in CLI.
 
 ## Learn More
 

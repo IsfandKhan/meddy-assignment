@@ -13,6 +13,7 @@ export const NavBar = () => (
       aria-controls="navbarSupportedContent"
       aria-expanded="false"
       aria-label="Toggle navigation"
+      data-cy="toggler"
     >
       <span className="navbar-toggler-icon"></span>
     </button>
@@ -20,17 +21,17 @@ export const NavBar = () => (
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav mr-auto">
         <li className="nav-item">
-          <span className="nav-link">
+          <span data-cy="ssr-posts" className="nav-link">
             <Link href="/">SSR Posts</Link>
           </span>
         </li>
         <li className="nav-item">
-          <span className="nav-link">
+          <span data-cy="ssg-posts" className="nav-link">
             <Link href="/static">SSG Posts</Link>
           </span>
         </li>
         <li className="nav-item">
-          <span className="nav-link">
+          <span data-cy="create-post" className="nav-link">
             <Link href="/create">Create Post</Link>
           </span>
         </li>
